@@ -8,4 +8,4 @@ const order_schema = new mongoose.Schema({
     total: Number
 }, {timestamps: true});
 
-mongoose.model('order', order_schema);
+module.exports = mongoose.model('order', order_schema);

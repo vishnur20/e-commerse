@@ -1,5 +1,6 @@
 const express = require('express');
-const user = require('../models/user');
+const mongoose = require('mongoose');
+const user = require('../models/user.js');
 const userRouter = express.Router();
 
 userRouter.get('/', (req, res) => {
@@ -11,7 +12,7 @@ userRouter.get('/register', (req, res) => {
     res.sendFile('G:/e-commerse/public/html/user/register.html');
 });
 
-userRouter.post('/register', async(req, res) => {
+userRouter.post('/register', (req, res) => {
     console.log('inside /register POST');
     // get the user input
     let reqPayload = req.body;
@@ -28,13 +29,8 @@ userRouter.post('/register', async(req, res) => {
         password: userpass
     });
     // put an entry in db
-    await newUser.save((err, doc) => {
-        if(!err) {
-            console.log('user added successfully...');
-        } else {
-            console.log('ERROR on user insertion');
-        }
-    });
+    newUser.save();
+    console.log('user added to DB');
     res.setHeader('content-type', 'application/json');
     res.send({redirectUrl: '/'});
 });

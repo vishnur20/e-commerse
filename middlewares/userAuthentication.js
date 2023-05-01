@@ -15,6 +15,8 @@ var userAuthenticator = (req, res, next) => {
                 // authenticate user
                 let isValidUser = authenticateUser(reqPayload.useremail,reqPayload. userpass);
                 if(isValidUser) {
+                    //
+                    console.log('user is valid');
                     // create cookie and set into session obj
                     let randNum = Math.random().toString();
                     let cookieID = randNum.substring(0, randNum.length - 2);
@@ -27,6 +29,11 @@ var userAuthenticator = (req, res, next) => {
                     console.log('Cookie is created');
                     console.log(`Req cookie: ${cookieObj}`);
                     console.log(`Session cookie: ${req.session.cookie}`);
+                    if(req.originalUrl === '/login' && req.method === 'POST') {
+                        res.setHeader('content-type', 'application/json');
+                        res.send({ message: 'user added' });
+                        return;
+                    }
                     res.redirect('/');
                 }
             }
@@ -45,14 +52,20 @@ var userAuthenticator = (req, res, next) => {
 };
 
 var authenticateUser = async(useremail, userpass) => {
-    // const mongoose = require('mongoose');
-    const user = require('../models/user.js');
-    // let dbUser = user.find({
-    //     email: useremail
-    // });
-    let dbUser = user.find({});
-    console.log(dbUser);
-    return dbUser.password == userpass;
+    try {
+        const user = require('../models/user.js');
+        let dbUser = await user.findOne({
+            email: useremail,
+            password: userpass
+        }).exec();
+        //
+        console.log(dbUser);
+        console.log(dbUser != undefined && dbUser.password == userpass);
+        return dbUser != undefined && dbUser.password == userpass;
+    } catch(err) {
+        console.log(`DB ERROR: ${err}`);
+    }
+    return false;
 };
 
 module.exports = userAuthenticator;

@@ -15,4 +15,4 @@ const product_schema = new mongoose.Schema({
     composition_washing: String
 }, {timestamps: true});
 
-mongoose.model('product', product_schema);
+module.exports = mongoose.model('product', product_schema);

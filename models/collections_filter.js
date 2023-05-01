@@ -5,4 +5,4 @@ const collections_filter_schema = new mongoose.Schema({
     values: [String]
 });
 
-mongoose.model('collections_filter', collections_filter_schema);
+module.exports = mongoose.model('collections_filter', collections_filter_schema);

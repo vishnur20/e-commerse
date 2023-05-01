@@ -5,4 +5,4 @@ const coupon_schema = new mongoose.Schema({
     percentage: Number
 }, {timestamps: true});
 
-mongoose.model('coupon', coupon_schema);
+module.exports = mongoose.model('coupon', coupon_schema);

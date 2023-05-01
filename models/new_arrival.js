@@ -7,4 +7,4 @@ const new_arrival_schema = new mongoose.Schema({
     shop_address: String
 }, {timestamps: true});
 
-mongoose.model('new_arrival', new_arrival_schema);
+module.exports = mongoose.model('new_arrival', new_arrival_schema);

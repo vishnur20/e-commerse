@@ -15,4 +15,4 @@ const admin_home_content_schema = new mongoose.Schema({
 
 }, {timestamps: true});
 
-mongoose.model('admin_home_content', admin_home_content_schema);
+module.exports = mongoose.model('admin_home_content', admin_home_content_schema);
