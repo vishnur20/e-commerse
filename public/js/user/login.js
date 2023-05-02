@@ -10,9 +10,12 @@ var loginUser = (e) => {
                     alert('Something went wrong...');
                     return;
                 }
-                if(res.isUserAlreadyExists != undefined && res.isUserAlreadyExists) {
-                    alert('User already exists');
+                if(res.isUserNotExists) {
+                    alert('User doesn\'t already exists');
                     return;
+                }
+                if(req.message != undefined || req.message != null) {
+                    alert(req.message);
                 }
                 if(res.redirectUrl != undefined || res.redirectUrl != null) {
                     window.location.href = res.redirectUrl;
