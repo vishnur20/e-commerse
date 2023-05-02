@@ -11,11 +11,8 @@ var loginUser = (e) => {
                     return;
                 }
                 if(res.isUserNotExists) {
-                    alert('User doesn\'t already exists');
+                    alert('User doesn\'t exists');
                     return;
-                }
-                if(req.message != undefined || req.message != null) {
-                    alert(req.message);
                 }
                 if(res.redirectUrl != undefined || res.redirectUrl != null) {
                     window.location.href = res.redirectUrl;

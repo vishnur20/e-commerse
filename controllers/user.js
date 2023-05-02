@@ -47,7 +47,7 @@ userRouter.post('/register', (req, res) => {
 userRouter.get('/logout', (req, res) => {
     req.session.destroy();
     console.log('session destroyed');
-    res.redirect('/');
+    res.redirect('/login');
 });
 
 userRouter.get('/collections', (req, res) => {  // how to load contents
