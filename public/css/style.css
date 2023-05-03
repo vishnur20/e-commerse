@@ -20,6 +20,8 @@ table{border-collapse: collapse;border-spacing: 0;font-size: 1em;}
 .header-items{display: flex;align-items: center;}
 .header-menu{margin-left: 40px;}
 .navigation a{text-transform: uppercase;color:#333;}
+.navigation ul{display: flex;}
+.navigation li{ margin-right: 20px;}
 .head-link{display: none;position: absolute;min-width: 150px;right: -10px;box-shadow: 0px 1px 3px #aaa;}
 .head-link a{display: block;padding: 10px 20px;color:#111;text-align: right;border-bottom: #ddd 1px solid;}
 .header-items span{padding-left: 15px;}

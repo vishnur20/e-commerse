@@ -37,6 +37,12 @@ adminRouter.get('/orderdetails', (req, res) => {
 
 adminRouter.post('/orderdetails', (req, res) => {});
 
+adminRouter.get('/discounts', (req, res) => {
+    res.sendFile('G:/e-commerse/public/html/admin/discount.html');
+});
+
+adminRouter.post('/discounts', (req, res) => {});
+
 adminRouter.get('/editdiscount', (req, res) => {
     res.sendFile('G:/e-commerse/public/html/admin/edit-discount.html');
 });
@@ -49,11 +55,11 @@ adminRouter.get('/orderconfirmation', (req, res) => {
 
 adminRouter.post('/orderconfirmation', (req, res) => {});
 
-adminRouter.get('/collections', (req, res) => {
+adminRouter.get('/products', (req, res) => {
     res.sendFile('G:/e-commerse/public/html/admin/admin-collection.html');
 });
 
-adminRouter.post('/collections', (req, res) => {});
+adminRouter.post('/products', (req, res) => {});
 
 adminRouter.get('/logout', (req, res) => {
     req.session.destroy();
