@@ -62,7 +62,7 @@ userRouter.get('/product?id=#', (req, res) => { // how to load specific product?
     // load the product content for that id
 });
 
-userRouter.post('/cart', (req, res) => {    // not '/product' POST
+userRouter.get('/cart', (req, res) => {    // not '/product' POST
     // add the product to cart table
     res.sendFile('G:/e-commerse/public/html/user/cart.html');
     // notify user the status
