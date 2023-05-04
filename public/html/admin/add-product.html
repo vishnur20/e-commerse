@@ -61,7 +61,7 @@
 							<div class="edit-product">
 								<div class="flex">
 									<div class="product-lineitems form-section">
-										<form>
+										<form id="productform">
 											<div class="form-control">
 												<label for="product-name">Product Name</label>
 												<input id="productname" type="text" placeholder="">
@@ -79,12 +79,12 @@
 												<div class="mt-10">
 													<span class="pr-20">
 														<label for="active">
-															<input id="active" type="radio" checked name="status" value="active">&nbsp;Active
+															<input id="status_active" type="radio" checked name="status" value="active">&nbsp;Active
 														</label>
 													</span>
 													<span>
 														<label for="inactive">
-															<input id="inactive" type="radio" name="status" value="inactive">&nbsp;Inactive
+															<input id="status_inactive" type="radio" name="status" value="inactive">&nbsp;Inactive
 														</label>
 													</span>
 												</div>
@@ -101,9 +101,8 @@
 											<label for="description">Product Image</label>
 											<div class="mt-10">
 												<div class="drop-zone">
-													<span class="drop-zone__prompt">Drop file here or click to
-														upload</span>
-													<input type="file" name="myFile" class="drop-zone__input">
+													<span class="drop-zone__prompt">Drop file here or click to upload</span>
+													<input id="productimage" type="file" name="myFile" class="drop-zone__input">
 												</div>
 											</div>
 										</div>
@@ -188,7 +187,7 @@
 			}
 		}
 	</script>
-	<script src="/js/admin/product.js"></script>
+	<script src="/js/admin/products.js"></script>
 </body>
 
 </html>

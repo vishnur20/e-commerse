@@ -9,15 +9,15 @@ userRouter.get('/', (req, res) => {
         res.redirect('/login');
     } else {
         console.log('load index page');
-        res.sendFile('G:/e-commerse/public/html/user/index.html');
+        res.sendFile(__dirname + '/public/html/user/index.html');
     }
 });
 
 userRouter.get('/register', (req, res) => {
     if(req.session.useremail == undefined || req.session.useremail == '') {
-        res.sendFile('G:/e-commerse/public/html/user/register.html');
+        res.sendFile(__dirname + '/public/html/user/register.html');
     } else {
-        res.sendFile('G:/e-commerse/public/html/user/index.html');
+        res.sendFile(__dirname + '/public/html/user/index.html');
     }
 });
 
@@ -52,19 +52,19 @@ userRouter.get('/logout', (req, res) => {
 
 userRouter.get('/collections', (req, res) => {  // how to load contents
     // load collections page
-    res.sendFile('G:/e-commerse/public/html/user/collections.html');
+    res.sendFile(__dirname + '/public/html/user/collections.html');
     // note: page contents are loaded using AJAX
 });
 
 userRouter.get('/product?id=#', (req, res) => { // how to load specific product?
     // get the product details page
-    res.sendFile('G:/e-commerse/public/html/user/product.html');
+    res.sendFile(__dirname + '/public/html/user/product.html');
     // load the product content for that id
 });
 
 userRouter.get('/cart', (req, res) => {    // not '/product' POST
     // add the product to cart table
-    res.sendFile('G:/e-commerse/public/html/user/cart.html');
+    res.sendFile(__dirname + '/public/html/user/cart.html');
     // notify user the status
 });
 

@@ -14,7 +14,7 @@ const adminValidator = (req, res, next) => {
             res.redirect('/admin');
             return;
         }
-    } else {
+    } else if(req.originalUrl != '/register') {
         res.redirect('/login');
         return;
     }
