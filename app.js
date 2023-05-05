@@ -11,7 +11,7 @@ const adminRouter = require('./controllers/admin.js');
 const userRouter = require('./controllers/user.js');
 
 // db models
-const user = require('./models/User.js');
+const User = require('./models/_User.js');
 
 // middlewares
 const userAuthenticator = require('./middlewares/userAuthentication.js');
@@ -21,7 +21,7 @@ const PORT = 5000;
 
 const authenticateUser = async(useremail, userpass) => {
     try {
-        let dbUser = await user.findOne({
+        let dbUser = await User.findOne({
             email: useremail,
             password: userpass
         }).exec();
