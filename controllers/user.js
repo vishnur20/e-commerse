@@ -1,7 +1,7 @@
 const express = require('express');
 const userRouter = express.Router();
 const mongoose = require('mongoose');
-const user = require('../models/user.js');
+const user = require('../models/User.js');
 const path = require('path');
 
 userRouter.get('/', (req, res) => {
