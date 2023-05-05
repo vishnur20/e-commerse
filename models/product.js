@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const product_schema = new mongoose.Schema({
+const Product_schema = new mongoose.Schema({
     sku: String,
     product_name: String,
     brand_name: String,
@@ -15,4 +15,4 @@ const product_schema = new mongoose.Schema({
     composition_washing: String
 }, {timestamps: true});
 
-module.exports = mongoose.model('product', product_schema);
+module.exports = mongoose.model('Product', Product_schema);

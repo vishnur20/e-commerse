@@ -14,8 +14,17 @@ var addProduct = () => {
         price: input_price.value,
         status: status,
         description: textarea_description.value,
-        
     };
     
     // add to db
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = () => {
+        if(xhr.readyState == 4) {
+            var resObj = JSON.parse(xhr.responseText);
+            consol.log(resObj);
+        }
+    };
+    xhr.open('POST', '/addproduct');
+    xhr.setRequestHeader('content-type', 'application/json');
+    xhr.send(JSON.stringify(formData));
 };

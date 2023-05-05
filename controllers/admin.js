@@ -17,7 +17,11 @@ adminRouter.get('/addproduct', (req, res) => {
     res.sendFile(__dirname + '/public/html/admin/add-product.html');
 });
 
-adminRouter.post('/addproduct', (req, res) => {});
+adminRouter.post('/addproduct', (req, res) => {
+    // store into product table
+    var reqPayload = req.body;
+    
+});
 
 adminRouter.get('/editproduct', (req, res) => {
     res.sendFile(__dirname + '/public/html/admin/edit-product.html');

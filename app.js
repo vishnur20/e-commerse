@@ -63,7 +63,7 @@ app.get('/login', (req, res) => {
     if(req.session.useremail != undefined && req.session.useremail != '') {
         res.redirect('/');
     } else {
-        res.sendFile('G:/e-commerse/public/html/login.html');
+        res.sendFile(path.resolve(__dirname + '/public/html/login.html'));
     }
 });
 

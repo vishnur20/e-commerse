@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
-const collections_filter_schema = new mongoose.Schema({
+const CollectionsFilter_schema = new mongoose.Schema({
     filter_type: String,
     values: [String]
 });
 
-module.exports = mongoose.model('collections_filter', collections_filter_schema);
+module.exports = mongoose.model('CollectionsFilter', CollectionsFilter_schema);
