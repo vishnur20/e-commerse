@@ -11,7 +11,7 @@ const adminRouter = require('./controllers/admin.js');
 const userRouter = require('./controllers/user.js');
 
 // db models
-const User = require('./models/_User.js');
+const User = require('./models/User.js');
 
 // middlewares
 const userAuthenticator = require('./middlewares/userAuthentication.js');
