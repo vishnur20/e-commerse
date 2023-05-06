@@ -1,6 +1,5 @@
 const express = require('express');
 const userRouter = express.Router();
-const mongoose = require('mongoose');
 const user = require('../models/User.js');
 const path = require('path');
 
@@ -33,7 +32,6 @@ userRouter.post('/register', (req, res) => {
         return;
     }
 
-    // const mongoose = require('mongoose');
     const newUser = new user({
         email: useremail,
         password: userpass

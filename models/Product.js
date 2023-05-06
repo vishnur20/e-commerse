@@ -11,6 +11,7 @@ const Product_schema = new mongoose.Schema({
     offer_price: Number,
     no_of_sizes: Number,
     is_on_sale: Boolean,
+    stauts: String,
     description: String,
     composition_washing: String
 }, {timestamps: true});

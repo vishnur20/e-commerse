@@ -63,16 +63,16 @@
 									<div class="product-lineitems form-section">
 										<form id="productform">
 											<div class="form-control">
-												<label for="product-name">Product Name</label>
-												<input id="productname" type="text" placeholder="">
+												<label for="product_name">Product Name</label>
+												<input id="product_name" type="text" placeholder="">
 											</div>
 											<div class="form-control">
 												<label for="sku">SKU</label>
 												<input id="sku" type="text" placeholder="">
 											</div>
 											<div class="form-control">
-												<label for="price">Price ($)</label>
-												<input id="price" type="text" placeholder="">
+												<label for="offer_price">Price ($)</label>
+												<input id="offer_price" type="text" placeholder="">
 											</div>
 											<div class="form-control">
 												<label for="status">Product Status</label>
@@ -93,7 +93,7 @@
 												<label for="description">Description</label>
 												<textarea id="description" cols="5" rows="10"></textarea>
 											</div>
-											<a href="admin-collection.html" class="button button--hollow justify-end inline-block" onclick="addProduct()">Save</a>
+											<button class="button button--hollow justify-end inline-block" onclick="addProduct(event)">Save</button>
 										</form>
 									</div>
 									<div class="product-imageitem">

@@ -1,17 +1,16 @@
-var addProduct = () => {
+let addProduct = (e) => {
+    e.preventDefault();
     // take the form data
-    var form_productForm = document.getElementsById('productform');
-    var input_productName = document.getElementById('productname');
+    var input_productName = document.getElementById('product_name');
     var input_sku = document.getElementById('sku');
-    var input_price = document.getElementById('price');
+    var input_offerPrice = document.getElementById('offer_price');
     var radio_statusActive = document.getElementById('status_active');
     var textarea_description = document.getElementById('description');
-    
     var status = radio_statusActive.checked ? 'active' : 'inactive'; 
     var formData = {
-        productname: input_productName.ariaValueMax,
+        product_name: input_productName.value,
         sku: input_sku.value,
-        price: input_price.value,
+        offer_price: input_offerPrice.value,
         status: status,
         description: textarea_description.value,
     };
@@ -24,7 +23,7 @@ var addProduct = () => {
             consol.log(resObj);
         }
     };
-    xhr.open('POST', '/addproduct');
+    xhr.open('POST', '/admin/product');
     xhr.setRequestHeader('content-type', 'application/json');
     xhr.send(JSON.stringify(formData));
 };
