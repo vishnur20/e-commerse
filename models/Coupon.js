@@ -6,6 +6,7 @@ const Coupon_schema = new mongoose.Schema({
         required: true
     },
     percentage: Number,
+    status: String,
     start_date: Date,
     end_date: Date
 }, {timestamps: true});

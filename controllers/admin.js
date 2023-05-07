@@ -4,7 +4,8 @@ const adminRouter = express.Router();
 
 // db util
 const ProductUtil = require('../db_util/product_util.js');
-const OrderUtil = require('../db_util/order_util.js');
+const DiscountUtil = require('../db_util/discount_util.js');
+// const OrderUtil = require('../db_util/order_util.js');
 
 //GET
 adminRouter.get('/', (req, res) => {
@@ -51,6 +52,13 @@ adminRouter.get('/products', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/../public/html/admin/admin-collection.html'));
 });
 
+// NOTE: 'product' is singular
+adminRouter.get('/product', async(req, res) => {
+    let dbProducts = await ProductUtil.select.getAllProducts();
+    res.setHeader('content-type', 'application/json');
+    res.send(dbProducts);
+});
+
 adminRouter.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/login');
@@ -60,7 +68,7 @@ adminRouter.get('/logout', (req, res) => {
 //POST
 adminRouter.post('/homepageeditor', (req, res) => {});
 
-adminRouter.post('/product', (req, res) => {
+adminRouter.post('/product', async(req, res) => {
     let reqPayload = req.body;
     if(reqPayload == undefined || reqPayload == null) {
         res.send(401);
@@ -74,7 +82,7 @@ adminRouter.post('/product', (req, res) => {
             productObj[productDetails[i]] = reqPayload[productDetails[i]];
         }
     }
-    let insertedRec = ProductUtil.insert(productObj);
+    let insertedRec = await ProductUtil.insert(productObj);
     if(insertedRec != undefined && insertedRec != null) {
         res.send(JSON.stringify({
             message: 'added successfully',
@@ -113,7 +121,40 @@ adminRouter.post('/product', (req, res) => {
 // });
 
 adminRouter.post('/orderdetails', (req, res) => {});
-adminRouter.post('/discounts', (req, res) => {});
+adminRouter.post('/discount', async(req, res) => {
+    let reqPayload = req.body;
+    //
+    console.log('payload: ' + JSON.stringify(reqPayload));
+
+    if(reqPayload == undefined || reqPayload == null) {
+        res.send(401);
+        return;
+    }
+
+    let couponDetails = ['code', 'percentage', 'status', 'start_date', 'end_date'];
+    let couponObj = {};
+    for(let i = 0; i < couponDetails.length; i++) {
+        if(reqPayload[couponDetails[i]] != undefined && reqPayload[couponDetails[i]] != null) {
+            couponObj[couponDetails[i]] = reqPayload[couponDetails[i]];
+        }
+    }
+
+    //
+    console.log('before insertion: ' + JSON.stringify(couponObj));
+
+    let insertedRec = await DiscountUtil.insert(couponObj);
+    if(insertedRec != undefined && insertedRec != null) {
+        res.send(JSON.stringify({
+            message: 'added successfully',
+            _id: insertedRec._id
+        }));
+    } else {
+        res.send(JSON.stringify({
+            error: 'Something went wrong',
+            message: 'failed to add'
+        }));
+    }
+});
 adminRouter.post('/orderconfirmation', (req, res) => {});
 
 

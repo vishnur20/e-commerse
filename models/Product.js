@@ -13,7 +13,9 @@ const Product_schema = new mongoose.Schema({
     is_on_sale: Boolean,
     stauts: String,
     description: String,
-    composition_washing: String
+    composition_washing: String,
+    coupons: [String],
+    count_in_inventory: Number
 }, {timestamps: true});
 
 module.exports = mongoose.model('Product', Product_schema);
