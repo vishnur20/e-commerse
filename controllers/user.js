@@ -21,7 +21,7 @@ userRouter.get('/register', (req, res) => {
     }
 });
 
-userRouter.post('/register', (req, res) => {
+userRouter.post('/register', async(req, res) => {
     console.log('inside /register POST');
     // get the user input
     let reqPayload = req.body;
@@ -37,7 +37,7 @@ userRouter.post('/register', (req, res) => {
         password: userpass
     });
     // put an entry in db
-    newUser.save();
+    await newUser.save();
     console.log('user added to DB');
     res.setHeader('content-type', 'application/json');
     res.send({redirectUrl: '/'});

@@ -5,10 +5,25 @@ const Coupon_schema = new mongoose.Schema({
         type: String,
         required: true
     },
-    percentage: Number,
-    status: String,
+    percentage: {
+        type: Number,
+        default: 0
+    },
+    status:  {
+        type: String,
+        default: 'inactive' //active, inactive, expired
+    },
+    is_scheduled: {
+        type: Boolean,
+        default: false
+    },
     start_date: Date,
-    end_date: Date
+    end_date: Date,
+    description: String,
+    times_used: {
+        type: Number,
+        default: 0
+    }
 }, {timestamps: true});
 
 module.exports = mongoose.model('Coupon', Coupon_schema);

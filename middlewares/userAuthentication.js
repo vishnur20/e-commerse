@@ -53,7 +53,7 @@ var userAuthenticator = (req, res, next) => {
 //         let dbUser = await user.findOne({
 //             email: useremail,
 //             password: userpass
-//         }).exec();
+//         });
 //         //
 //         console.log(dbUser);
 //         if(dbUser == undefined || dbUser != null) {

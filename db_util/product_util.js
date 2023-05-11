@@ -1,9 +1,15 @@
 const Product = require('../models/Product');
+const mongoose = require('mongoose');
+const getDBConn = async() => {
+    return await mongoose.connection;
+};
 
 const ProductUtil = {};
 ProductUtil.select = {};
-ProductUtil.select.getAllProducts = async() => {
-    return await DB.products.find();
+ProductUtil.select.getAllProducts = async(offset, limit) => {
+    let db = await getDBConn();
+    let result = await db.collection('products').find().toArray();//.skip(1).limit(limit)
+    return result;
 };
 
 ProductUtil.select.getProductByID = async(id) => {
@@ -11,7 +17,6 @@ ProductUtil.select.getProductByID = async(id) => {
 };
 
 ProductUtil.insert = async(productObj) => {
-    console.log(productObj);
     return await new Product(productObj).save();
 };
 

@@ -24,7 +24,7 @@ const authenticateUser = async(useremail, userpass) => {
         let dbUser = await User.findOne({
             email: useremail,
             password: userpass
-        }).exec();
+        });
         //
         console.log(dbUser);
         if(dbUser == undefined || dbUser != null) {

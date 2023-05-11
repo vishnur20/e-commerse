@@ -36,6 +36,24 @@ adminRouter.get('/discounts', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/../public/html/admin/discount.html'));
 });
 
+adminRouter.get('/discount', async(req, res) => {
+    // formate obj
+    let reqPayload = req.body;
+    let discountDetails = ["code", "percentage", "status", "start_date", "end_date"];
+    let couponObj = {};
+    discountDetails.forEach((property) => {
+        if(reqPayload[property] != undefined && reqPayload[property] != null) {
+            couponObj[property] = reqPayload[property];
+        }
+    });
+    // get from DB
+    console.log('before insertion coupon: ' + couponObj);
+    let dbResult = await DiscountUtil.select.getAllCoupons(couponObj);
+    console.log('db result: ' + dbResult);
+    res.setHeader('content-type', 'application/json');
+    res.send(dbResult);
+});
+
 adminRouter.get('/creatediscount', (req, res) => {
     res.sendFile(path.resolve(__dirname + '/../public/html/admin/create-discount.html'))
 });
@@ -54,8 +72,10 @@ adminRouter.get('/products', (req, res) => {
 
 // NOTE: 'product' is singular
 adminRouter.get('/product', async(req, res) => {
-    let dbProducts = await ProductUtil.select.getAllProducts();
-    res.setHeader('content-type', 'application/json');
+    let offset = req.offset;
+    const LIMIT = 20;
+    let dbProducts = await ProductUtil.select.getAllProducts(offset, LIMIT);
+    // res.setHeader('content-type', 'application/json');
     res.send(dbProducts);
 });
 
@@ -74,7 +94,7 @@ adminRouter.post('/product', async(req, res) => {
         res.send(401);
         return;
     }
-    let productDetails = ["sku", "product_name", "brand_name", "image", "actual_price", "is_bestseller", "no_of_offers", "offer_price", "no_of_sizes", "is_on_sale", "description", "composition_washing"];
+    let productDetails = ["sku", "product_name", "brand_name", "image", "actual_price", "is_bestseller", "no_of_offers", "offer_price", "no_of_sizes", "is_on_sale", "description", "composition_washing", "status"];
     let productObj = {};
     for(let i = 0; i < productDetails.length; i++) {
         console.log(productDetails[i] + ': ' + reqPayload[productDetails[i]]);

@@ -29,19 +29,23 @@ let addProduct = (e) => {
 };
 
 let getProducts = () => {
+    let offset = 1;
     // get all products as a list
     let xhr = new XMLHttpRequest();
     xhr.onreadystatechange = () => {
         if(xhr.readyState == 4) {
-            let resObj = JSON.parse(xhr.responseText);
-            //
+            let productsList = JSON.parse(xhr.responseText);
+            constructProdectTableList(productsList);
         }
     };
-    xhr.open('GET', '/admin/product');
+    xhr.open('GET', `/admin/product?offset=${offset}`);
     xhr.send();
 };
 
 let constructProdectTableList = (products) => {
+    if(! Array.isArray(products)) {
+        return;
+    }
     let tableBody_products = document.getElementById('products_list_parent');
     products.forEach(productObj => {
         tableBody_products.appendChild(constructProdectTableItem(productObj));
@@ -49,9 +53,12 @@ let constructProdectTableList = (products) => {
 };
 
 let constructProdectTableItem = (productObj) => {
-    let productDetails = ['image', 'product_name', 'sku', 'price', 'count_in_inventory', 'status'];
+    let productDetails = ['image', 'product_name', 'sku', 'offer_price', 'count_in_inventory', 'status'];
     let tr_product = document.createElement('tr');
     for(let i = -1; i < productDetails.length; i++) {
+        let propertyName = productDetails[i];
+        let td_property = document.createElement('td');
+        
         if(i == -1) {
             let input_checkbox = document.createElement('input');
             input_checkbox.setAttribute('type', 'checkbox');
@@ -60,8 +67,7 @@ let constructProdectTableItem = (productObj) => {
             tr_product.appendChild(td_property);
             continue;
         }
-        let propertyName = productDetails[i];
-        let td_property = document.createElement('td');
+        
         if(propertyName === 'image' && productObj.hasOwnProperty(propertyName)) {
             let imageUrl = productObj[propertyName];
             let span_wrap = document.createElement('span');
@@ -73,7 +79,7 @@ let constructProdectTableItem = (productObj) => {
         } else if(propertyName === 'product_name' && productObj.hasOwnProperty(propertyName)) {
             let a_wrap = document.createElement('a');
             a_wrap.setAttribute('href', '/admin/editproduct?id=' + productObj.sku);
-            td_property.innerText = productObj[propertyName];
+            a_wrap.innerText = productObj[propertyName];
             td_property.appendChild(a_wrap);
         } else {
             if(productObj.hasOwnProperty(propertyName)) {
@@ -83,14 +89,16 @@ let constructProdectTableItem = (productObj) => {
                     } else if(productObj[propertyName].trim().toLowerCase() === 'inactive') {
                         td_property.setAttribute('class', 'color-red');
                     }
-                } else if(propertyName === 'price') {
+                } else if(propertyName === 'offer_price') {
                     td_property.innerHTML += '$';
                 }
             }
-            td_property.innerText += productObj[propertyName];
+            let value = productObj[propertyName];
+            td_property.innerText += value != undefined && value != null ? value: '-';
         }
         tr_product.appendChild(td_property);
     }
+    return tr_product;
 };
 
 getProducts();
