@@ -3,6 +3,9 @@ const userRouter = express.Router();
 const user = require('../models/User.js');
 const path = require('path');
 
+// db utils
+const ProductUtil = require('../db_util/product_util.js');
+
 userRouter.get('/', (req, res) => {
     // load user index page
     if(req.session.useremail == undefined || req.session.useremail == '') {
@@ -55,10 +58,17 @@ userRouter.get('/collections', (req, res) => {  // how to load contents
     // note: page contents are loaded using AJAX
 });
 
-userRouter.get('/product?id=#', (req, res) => { // how to load specific product?
+userRouter.get('/product', (req, res) => { // how to load specific product?
     // get the product details page
     res.sendFile(path.resolve(__dirname + '/../public/html/user/product.html'));
     // load the product content for that id
+});
+
+userRouter.get('/getproductdetails', async(req, res) => {
+    let productID = req.query.id;
+    let productObj = await ProductUtil.select.getProductByID(productID);
+    res.setHeader('content-type', 'application/json');
+    res.send(productObj);
 });
 
 userRouter.get('/cart', (req, res) => {    // not '/product' POST

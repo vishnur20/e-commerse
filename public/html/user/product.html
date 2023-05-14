@@ -63,17 +63,17 @@
 						<div class="product-wrap">
 							<div class="product-single">
 								<div class="product-media">
-									<a href="#">
-										<img src="images/product-img.jpg" alt="">
+									<a id="product_image" href="javascript:;">
+										<img id="product_image" src="images/product-img.jpg" alt="product image">
 									</a>
 								</div>
 								<div class="product-info">
 									<div class="right-side">
-										<span class="product-sku">SKU: SHIR0001</span>
-										<h3 class="product-title main-title">Basic Pink T-Shirt</h3>
+										<span class="product-sku">SKU: <span id="sku">No data</span></span>
+										<h3 id="product_name" class="product-title main-title">No data</h3>
 										<div class="price">
 			                                <div class="regular-price">
-			                                    <span><span class="money" data-currency-usd="$200.00">$200.00</span></span>
+			                                    <span><span id="offer_price" class="money">No data</span></span>
 											</div>	  
 			    						</div>
 			    						<div class="line-item-quantity">
@@ -89,9 +89,9 @@
 							<div class="desc-wrap">
 								<h4>Description</h4>
 								<div class="detail-desc">
-									<p>Nice and simple T-shirt made of stretchy cotton quality. The t-shirt has short sleeves, a round neck and a super comfortable fit.</p>
+									<p id="description">No data</p>
 									<p><strong>Composition & Washing</strong></p>
-									<p>Jersey fabric: 100% cotton; woven fabric: 100% polyester, exclusive of embroideries. Wash by hand in water. Do not bleach. Iron at max. 110 °C using a damp cloth between the iron and the fabric. Do not dry clean. Do not tumble dry. Flat drying in the shade.</p>
+									<p id="composition_washing">No data</p>
 								</div>
 							</div>
 						</div>
@@ -108,4 +108,5 @@
 		</footer>
 	</div>
 </body>
+<script src="../js/user/product.js"></script>
 </html>

@@ -6,7 +6,10 @@ const Product_schema = new mongoose.Schema({
     brand_name: String,
     image: String,
     actual_price: Number,
-    is_bestseller: Boolean,
+    is_bestseller: {
+        type: Boolean,
+        default: false
+    },
     no_of_offers: Number,
     offer_price: Number,
     no_of_sizes: Number,

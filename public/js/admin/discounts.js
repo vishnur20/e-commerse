@@ -86,8 +86,10 @@ let constructDiscountTableItem = (discount) => {
             } else {
                 td_property.innerText = discount[couponDetails[i]];
             }
-            tr_discount.appendChild(td_property);
+        } else {
+            td_property.innerText = '-';
         }
+        tr_discount.appendChild(td_property);
     };
     return tr_discount;
 };

@@ -20,7 +20,7 @@ const Coupon_schema = new mongoose.Schema({
     start_date: Date,
     end_date: Date,
     description: String,
-    times_used: {
+    no_of_times_used: {
         type: Number,
         default: 0
     }
