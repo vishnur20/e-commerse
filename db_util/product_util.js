@@ -1,6 +1,6 @@
 const Product = require('../models/Product');
 const mongoose = require('mongoose');
-const getDBConn = () => {
+const db = () => {
     return mongoose.connection;
 };
 
@@ -20,7 +20,6 @@ ProductUtil.select.getAllProducts = async(criteriaObj, cursorObj) => {
             limit = Number.MAX_VALUE;
         }
 
-        let db = await getDBConn();
         let result = await db.collection('products').find(criteriaObj)
         .skip(1).limit(limit).toArray();
         return result;
@@ -45,7 +44,6 @@ ProductUtil.select.getProductByID = async(id) => {
         if(id == undefined || id == null) {
             return [];
         }
-        let db = await getDBConn();
         return await db.collection('products').findOne({ sku: id });
     } catch(err) {
         console.log(`ERROR: ${err}`);
@@ -70,6 +68,7 @@ ProductUtil.update = async(id, productObj) => {
         return [];
     }
 };
+
 ProductUtil.delete = async(id) => {
     try {
         // code

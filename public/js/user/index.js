@@ -33,3 +33,7 @@ let getNewArrivals = () => {
     xhr.open('GET', '/newarrivals');
     xhr.send();
 };
+
+getBanners();
+getBestSellerProducts();
+getNewArrivals();
